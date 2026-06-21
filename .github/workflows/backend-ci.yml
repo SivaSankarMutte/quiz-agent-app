@@ -20,11 +20,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install UV
-        uses: astral-sh/setup-uv@v5
-
-      - name: Set Python
-        run: uv python install 3.12
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Install Dependencies
-        run: uv sync
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
