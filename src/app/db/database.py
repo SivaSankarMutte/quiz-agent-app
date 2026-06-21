@@ -8,15 +8,20 @@ from config.settings import settings
 
 load_dotenv()
 
-host = settings.POSTGRES_HOST
-port = settings.POSTGRES_PORT
-username = settings.POSTGRES_USER
-password = settings.POSTGRES_PASSWORD
-dbname = settings.POSTGRES_DB
+if settings.DATABASE_URL:
 
-DATABASE_URL = (
-    f"postgresql://{username}:{password}@{host}:{port}/{dbname}"
-)
+    DATABASE_URL = settings.DATABASE_URL
+
+else:
+
+    DATABASE_URL = (
+        f"postgresql://"
+        f"{settings.POSTGRES_USER}:"
+        f"{settings.POSTGRES_PASSWORD}@"
+        f"{settings.POSTGRES_HOST}:"
+        f"{settings.POSTGRES_PORT}/"
+        f"{settings.POSTGRES_DB}"
+    )
 
 engine = create_engine(DATABASE_URL)
 
