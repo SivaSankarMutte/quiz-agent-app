@@ -1,0 +1,43 @@
+create_quiz:
+  description: >
+    Generate exactly {no_of_questions} MCQ questions for the topic: {topic}
+
+    Every question must contain:
+    - question_text
+    - option_a
+    - option_b
+    - option_c
+    - option_d
+    - correct_answer
+    - explanation
+
+    Requirements:
+    - Exactly {no_of_questions} questions
+    - 4 options per question
+    - Only one correct answer
+    - Mix of beginner, intermediate, and advanced questions
+    - Questions should be interview-oriented
+
+  expected_output: >
+    A complete quiz containing exactly {no_of_questions} technical MCQ questions.
+
+  agent: quiz_creator
+
+
+validate_quiz:
+  description: >
+    Review the generated quiz.
+
+    Verify:
+    - Technical correctness
+    - Answer correctness
+    - Explanation correctness
+    - No duplicate questions
+    - Proper difficulty balance
+
+    Fix any issues found.
+
+  expected_output: >
+    A fully validated technical quiz ready to be shown to users.
+
+  agent: quiz_validator
